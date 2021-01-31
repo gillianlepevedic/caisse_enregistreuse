@@ -1,107 +1,138 @@
 import java.util.Scanner;
 
 public class LectureClavier {
-    private Scanner clavier;//Ouvre STDIN et pour les nombres réel il faut utiliser un point
-    
+    //Initialise un scanner
+    private Scanner clavier;
+    /**
+     * Initialise le Scanner des qu'on fait appelle a la fonction
+     * @param entrer le STDIN qu'on veut ecouter
+     */
     public LectureClavier(Scanner entrer) {
         clavier = entrer;
     }
-
+    /**
+     * Demmande un entier et continue tant qu'il a pas un entier
+     * @return retourne forcement un entier
+     */
     public int demandeEntier(){
+        //Initialise les variable utile
         boolean ok=false;
         int entier=0;
-
-        while (! ok){//Tant qu'il a pa lu un entier il sort pas
-            try {//Si la commande nextInt ne marche pas Alors il fait se qu'il y a dans catch 
-                entier = clavier.nextInt();//Si c'est un entier tout va bien sinon une erreur
-                ok = true;//Il a reussie a lire un entier
+        //boucle pour avoir un entier
+        while (! ok){
+            try {
+                entier = clavier.nextInt();
+                ok = true;
             } 
-            catch (java.util.InputMismatchException e) {//Si l'entrer n'est pas un entier alors il fait ca
+            catch (java.util.InputMismatchException e) {
                 System.out.print("Erreur : Chiffre incorrect \nDonnez un nombre entier :") ;
-                clavier.nextLine();//Vide le clavier ca evite les erreur si on a tapez n'importe quoi
+                clavier.nextLine();
             }  
         }
-
-        return entier;//Retourne l'entier taper au clavier
+        //retourne un entier
+        return entier;
     }
-
+    /**
+     * Demmande un entier et continue tant qu'il a pas un entier positif
+     * @return retourne forcement un entier positif
+     */
     public int demandeEntierPositif(){
+        //Initialise les variable utile
         boolean ok=false;
         int entierP=0;
-
-        while (! ok){//Tant qu'il a pa lu un entier il sort pas
+        //Boucle tant que l'entier n'est pas positif
+        while (! ok){
             entierP= demandeEntier();
 
             if (entierP >=0){
-                ok = true;//Il a reussie a lire un entier positif
+                ok = true;
             }else{
                 System.out.print("Erreur : Chiffre incorrect \nDonnez un nombre entier positif :") ;
             }
         }
-
-        return entierP;//Retourne l'entier taper au clavier
+        //Retourne l'entier taper au clavier
+        return entierP;
     }
-
+    /**
+     * Damande un entier entres un intervalle passer en paramettres. Les bornes sont compris dedans
+     * @param min Ca serat le plus petit entier accepter
+     * @param max Ca serat le plus grand entier accepter
+     * @return  retourne forcement un entier comprit dans l'interval
+     */
     public int demandeEntierInterval(int min, int max){
+        //Retourne l'entier taper au clavier
         boolean ok=false;
         int entierInter=0;
-
-        while (! ok){//Tant qu'il a pa lu un entier dans l'interval il sort pas
+        //Boucle tant que un entier n'est pas comprit dans l'interval
+        while (! ok){
             entierInter= demandeEntier();
 
-            if (entierInter >=min && entierInter <= max){//si le nombres n'est pas comprit dans l'inteval il recommence
-                ok = true;//Il a reussie a lire un entier dans l'interval
+            if (entierInter >=min && entierInter <= max){
+                ok = true;
             }else{
-                System.out.print("Erreur : Chiffre incorrect \nDonnezun nombres plus petit ou egal a " + max + " et plus grand ou egal a " + min + " :") ;
+                System.out.print("Erreur : Chiffre incorrect \nDonnez un nombres plus petit ou egal a " + max + " et plus grand ou egal a " + min + " :") ;
             }
         }
-
-        return entierInter;//Retourne l'entier taper au clavier
+        //Retourne l'entier comprit dans l'interval
+        return entierInter;
     }
-
+    /**
+     * Demmande un float et continue tant qu'il a pas un float avec un point si on utilise "Local.US"
+     * @return retourne forcement un float
+     */
     public float demandeFloat(){
+        //Initialise les variable utile
         boolean ok=false;
         float reel=0;
-
-        while (! ok){//Tant qu'il a pa lu un réel il sort pas
-            try {//Si la commande nextFloat ne marche pas Alors il fait se qu'il y a dans catch 
-                reel = clavier.nextFloat();//Si c'est un réel tout va bien sinon une erreur
-                ok = true;//Il a reussie a lire un réel
-            } 
-            catch (java.util.InputMismatchException e) {//Si l'entrer n'est pas un réel alors il fait ca
-                System.out.print("Erreur : Chiffre incorrect \nDonnez un nombre reel :") ;
-                clavier.nextLine();//Vide le clavier ca evite les erreur si on a tapez n'importe quoi
-            }  
-        }
-
-        return reel;//Retourne le réel taper au clavier
-    }
-    
-    public String demandeMot(){
-        String mot = "";
-
-        mot= demandeRegex("[A-Za-z_]+", "lettres min ,maj et underscore");//demande soit une/des lettres min ou maj ou underscore
-
-        return mot;//Renvoie une chaine avec des lettres et des underscore
-    }
-
-	public String demandeRegex(String autoriserRegex, String autoriserFR){
-        boolean ok=false;
-        String operateur = "";
-
-        while (! ok){//Tant qu'il a pa lu un quelque chose qui match avec le Regex il sort pas
-            try {//Si la commande next ne marche pas Alors il fait se qu'il y a dans catch 
-                operateur = clavier.next(autoriserRegex);//Si la lecture au clavier est match avec un regex alors pas de probleme sinon erreur
+        //Boucle tant qu'il y a pas un float
+        while (! ok){
+            try { 
+                reel = clavier.nextFloat();
                 ok = true;
             } 
-            catch (java.util.InputMismatchException e) {//Si ca match pas
-				System.out.print("Erreur : Operateur incorrect \nVous devez utiliser seulement ( " + autoriserFR + " ) :") ;//Affiche un message d'erreur personaliser 
-																															//en fonction de se qu'on a mits en paramtres
-                clavier.nextLine();//Vide le clavier ca evite les erreur si on a tapez n'importe quoi
+            catch (java.util.InputMismatchException e) {
+                System.out.print("Erreur : Chiffre incorrect \nDonnez un nombre reel :") ;
+                clavier.nextLine();
             }  
         }
-
-        return operateur;//Renvoie une chaine corespondant au Regex envoyer
+        //retourne un float
+        return reel;
+    }
+    /**
+     * Demande un mots avec maj ou/et min ou/et underscore
+     * @return retourne forcement un mots
+     */
+    public String demandeMot(){
+        //Initialise les variable utile
+        String mot = "";
+        //demande un mots corespondant au Regex
+        mot= demandeRegex("[A-Za-z_]+", "lettres min ,maj et underscore");
+        //Retourne un string avec des lettres et des underscore
+        return mot;
+    }
+    /**
+     * Demande une chaine qui coresponde au Regex envoyer en paramtres
+     * @param autoriserRegex Regex qui autorisera ou nom la chaine
+     * @param autoriserFR Personalisation du message d'erreur
+     * @return Retourne forcement un String corespondant au Regex
+     */
+	public String demandeRegex(String autoriserRegex, String autoriserFR){
+        //Initialise les variable utile
+        boolean ok=false;
+        String chaine = "";
+        //Boucle tant que la chaine ne corespond pas au Regex
+        while (! ok){
+            try { 
+                chaine = clavier.next(autoriserRegex);
+                ok = true;
+            } 
+            catch (java.util.InputMismatchException e) {
+				System.out.print("Erreur : Operateur incorrect \nVous devez utiliser seulement ( " + autoriserFR + " ) :") ;
+                clavier.nextLine();
+            }  
+        }
+        //Retourne un string qui match avec le Regex
+        return chaine;
     }
 
 

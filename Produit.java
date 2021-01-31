@@ -2,19 +2,19 @@ public class Produit {
         String libelle;
         int prix;
 
-    public String getlibelle(){
+    public String getLibelle(){
         return libelle;
     }
 
-    public void setlibelle(String libelle){
+    public void setLibelle(String libelle){
         this.libelle= libelle;
     }
 
-    public int getprix(){
+    public int getPrix(){
         return prix;
     }
 
-    public void setprix(int prix){
+    public void setPrix(int prix){
         this.prix= prix;
     }
 }
