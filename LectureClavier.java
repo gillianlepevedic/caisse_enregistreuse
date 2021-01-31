@@ -1,9 +1,11 @@
-import java.util.Locale;
 import java.util.Scanner;
 
 public class LectureClavier {
-    private static Scanner clavier = new Scanner(System.in).useLocale(Locale.US);//Ouvre STDIN et pour les nombres réel il faut utiliser un point
+    private Scanner clavier;//Ouvre STDIN et pour les nombres réel il faut utiliser un point
     
+    public LectureClavier(Scanner entrer) {
+        clavier = entrer;
+    }
 
     public int demandeEntier(){
         boolean ok=false;
@@ -101,4 +103,6 @@ public class LectureClavier {
 
         return operateur;//Renvoie une chaine corespondant au Regex envoyer
     }
+
+
 }
