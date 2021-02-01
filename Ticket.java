@@ -1,6 +1,8 @@
 import java.util.ArrayList;
 import java.util.List;
-
+/**
+ * Class qui definit Un ticket. il est composer de List de "Produit" et un int "nbProd"
+ */
 public class Ticket {
     List<Produit> listeProduit = new ArrayList<>();// Liste de produit du ticket
     int nbProd = 0;

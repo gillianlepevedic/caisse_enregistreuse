@@ -1,3 +1,6 @@
+/**
+ * Classe qui definit un produit. Il est composer d'un String "libelle" sont nom et d'un int "prix"
+ */
 public class Produit {
         String libelle;
         int prix;
